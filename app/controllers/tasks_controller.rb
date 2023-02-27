@@ -17,9 +17,20 @@ class TasksController < ApplicationController
   end
 
   def show
+    set_task
   end
 
   def edit
+    set_task
+  end
+
+  def create
+    set_task
+    if @task.update(params[:id])
+      redirect_to tasks_path, notice: "編集しました"
+    else
+      render :edit
+    end
   end
 
   private
@@ -27,4 +38,7 @@ class TasksController < ApplicationController
     params.require(:task).permit(:title, :content, :deadline, :status, :priority )
   end
 
+  def set_task
+    @task = Task.find(params[:id])
+  end
 end
