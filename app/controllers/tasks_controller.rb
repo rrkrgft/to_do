@@ -24,9 +24,9 @@ class TasksController < ApplicationController
     set_task
   end
 
-  def create
+  def update
     set_task
-    if @task.update(params[:id])
+    if @task.update(task_params)
       redirect_to tasks_path, notice: "編集しました"
     else
       render :edit
