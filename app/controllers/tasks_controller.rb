@@ -13,6 +13,7 @@ class TasksController < ApplicationController
   end
 
   def index
+    @task = Task.all
   end
 
   def show
