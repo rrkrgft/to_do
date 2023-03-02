@@ -1,9 +1,6 @@
 FactoryBot.define do
   factory :task do
-    title { "MyString" }
-    content { "MyText" }
-    deadline { "2023-02-27" }
-    status { "MyString" }
-    priority { "MyString" }
+    title { 'test_title' }
+    content { 'test_content' }
   end
 end
