@@ -1,0 +1,23 @@
+<h1>タスク一覧</h1>
+
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th>タイトル</th>
+        <th>更新日時</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @task.each do |t| %>
+        <tr>
+          <td><%= link_to t.title, task_path(t.id) %></td>
+          <td><%= t.updated_at %></td>
+          <td><%= link_to "編集", edit_task_path(t.id) %></td>
+          <td><%= link_to "削除", task_path(t.id), method: :delete, data: { confirm: '本当に削除していいですか' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+  <%= link_to "新規登録", new_task_path %>

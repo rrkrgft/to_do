@@ -1,0 +1,11 @@
+<%= form_with(model: @task, local: true) do |t| %>
+  <div>
+    <%= t.label :title %>
+    <%= t.text_field :title %>
+  </div>
+  <div>
+    <%= t.label :content %>
+    <%= t.text_field :content %>
+  </div>
+  <%= t.submit "登録" %>
+<% end %>
