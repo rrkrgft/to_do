@@ -1,5 +1,6 @@
 # テーブル一覧
 | model | column | data-type |
+| --- | --- | ---|
 | User | name | string |
 | User | email | string |
 | User | password_digest | string |
