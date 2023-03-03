@@ -16,12 +16,12 @@
 | Sort | Label_id | references |
 
 Herokuデプロイ手順
-1.heroku createのコマンドをターミナルで実行
-2.Gemfileに以下のgemを追加
- *net-smtp
- *net-imap
- *net-pop
-3.git add .のコマンドをターミナルで実行
-4.git commit -m ""のコマンドをターミナルで実行
-5.git push heroku step2のコマンドをターミナルで実行
-6.heroku run rails db:migrate
+1.heroku createのコマンドをターミナルで実行  
+2.Gemfileに以下のgemを追加  
+ *net-smtp  
+ *net-imap  
+ *net-pop  
+3.git add .のコマンドをターミナルで実行  
+4.git commit -m ""のコマンドをターミナルで実行  
+5.git push heroku step2のコマンドをターミナルで実行  
+6.heroku run rails db:migrate  
