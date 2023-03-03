@@ -305,6 +305,7 @@ DEPENDENCIES
   listen (~> 3.3)
   net-imap
   net-pop
+  net-smtp
   pg (~> 1.1)
   pry-rails
   puma (~> 5.0)
