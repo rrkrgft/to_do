@@ -13,7 +13,7 @@ class TasksController < ApplicationController
   end
 
   def index
-    @task = Task.all
+    @task = Task.order("created_at DESC")
   end
 
   def show
