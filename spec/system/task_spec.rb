@@ -6,7 +6,6 @@ RSpec.describe 'タスク管理機能', type: :system do
         visit new_task_path
         fill_in "タイトル", with: "test_title"
         fill_in "内容", with: "test_content"
-        binding.pry
         fill_in "期限", with: date
         click_on "登録"
         expect(page).to have_content 'タスクを登録しました'

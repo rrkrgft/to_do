@@ -22,5 +22,9 @@
     <%= t.label :deadline %>
     <%= t.date_field :deadline %>
   </div>
+  <div>
+    <%= t.label :status %>
+    <%= t.select :status ,["未着手","着手中","完了"] %>
+  </div>
   <%= t.submit "登録" %>
 <% end %>
