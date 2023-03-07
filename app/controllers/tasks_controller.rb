@@ -15,14 +15,14 @@ class TasksController < ApplicationController
   def index
     if (params[:search] == "" || params[:search] == nil) && (params[:select] == "" || params[:select] == nil )
       if params[:sort_expired]
-        @task = Task.order("deadline DESC")
+        @tasks = Task.order("deadline DESC").page(params[:page]).per(3)
       elsif params[:sort_priority]
-        @task = Task.order("priority DESC")
+        @tasks = Task.order("priority DESC").page(params[:page]).per(3)
       else
-        @task = Task.order("created_at DESC")
+        @tasks = Task.order("created_at DESC").page(params[:page]).per(3)
       end
     else
-      @task = Task.looks(params[:search], params[:select])
+      @tasks = Task.looks(params[:search], params[:select]).page(params[:page]).per(3)
     end
   end
 
