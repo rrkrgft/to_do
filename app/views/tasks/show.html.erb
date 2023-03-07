@@ -1,6 +1,6 @@
-<h1>詳細</h1>
+<h1 class="my-3">詳細</h1>
 
-<table>
+<table class="table table-hover">
   <tbody>
     <tr>
       <th>ID</th>
@@ -36,6 +36,6 @@
     </tr>
   </tbody>
 </table>
-<%= link_to "一覧", tasks_path %>
-<%= link_to "編集", edit_task_path(@task.id) %>
-<%= link_to "削除", task_path(@task.id), method: :delete, data: { confirm: '本当に削除していいですか' } %>
+<%= link_to "一覧", tasks_path, class: "btn btn-outline-primary" %>
+<%= link_to "編集", edit_task_path(@task.id), class: "btn btn-outline-secondary" %>
+<%= link_to "削除", task_path(@task.id), method: :delete, class: 'btn btn-danger', data: { confirm: '本当に削除していいですか' } %>

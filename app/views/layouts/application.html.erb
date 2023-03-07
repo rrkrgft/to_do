@@ -11,8 +11,16 @@
   </head>
 
   <body>
-    <head></head>
-    <div>
+    <head>
+      <nav class="app-title navbar navbar-expand-md navbar-light bg-light">
+        <div class="navbar-brand">To Doアプリ</div>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"><%= link_to "タスク登録", new_task_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "タスク一覧", tasks_path, class: "nav-link" %></li>
+        </ul>
+      </nav>
+    </head>
+    <div class='container'>
       <% if flash.notice.present? %>
         <%= flash.notice %>
       <% end %>
