@@ -26,5 +26,9 @@
     <%= t.label :status %>
     <%= t.select :status ,["未着手","着手中","完了"] %>
   </div>
+  <div>
+    <%= t.label :priority %>
+    <%= t.select :priority ,Task.priorities.keys %>
+  </div>
   <%= t.submit "登録" %>
 <% end %>

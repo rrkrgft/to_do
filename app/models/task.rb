@@ -2,16 +2,19 @@ class Task < ApplicationRecord
   validates :title, presence: true
   validates :content, presence: true
 
-  def self.looks(search,select)
+  enum priority:{ 低: 0, 中: 1, 高: 2 }
+
+  scope :order_by_priority, -> {
+    order([])
+  }
+
+  scope :looks, -> (search,select){
     if select == ""
-      puts "ttest1"
       @task = Task.where("title LIKE?" ,"%#{search}%")
     elsif search == ""
-      puts "ttest2"
       @task = Task.where(status: "#{select}")
     else
-      puts "ttest3"
       @task = Task.where("title LIKE?","%#{search}%").where(status: "#{select}")
     end
-  end
+  }
 end

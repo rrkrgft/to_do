@@ -4,7 +4,7 @@
   <%= form_with(url: tasks_path, local: true, method: :get ) do |t| %>
     <%= t.label "タスク名"%>
     <%= t.text_field :search %>
-    <%= t.label "状態" %>
+    <%= t.label "ステータス" %>
     <%= t.select :select,options_for_select(["","未着手","着手中","完了"]) %>
     <%= t.submit "検索" %>
   <% end %>
@@ -17,6 +17,7 @@
         <th><%= link_to "期限", tasks_path(sort_expired: "true") %></th>
         <th>ステータス</th>
         <th>更新日時</th>
+        <th><%= link_to "優先度", tasks_path(sort_priority: "true") %></th>
       </tr>
     </thead>
     <tbody>
@@ -25,7 +26,8 @@
           <td><%= link_to t.title, task_path(t.id),class: "task_row" %></td>
           <td><%= t.deadline %></td>
           <td><%= t.status %></td>
-          <td><%= t.updated_at %></td>
+          <td><%= t.created_at %></td>
+          <td><%= t.priority %></td>
           <td><%= link_to "編集", edit_task_path(t.id) %></td>
           <td><%= link_to "削除", task_path(t.id), method: :delete, data: { confirm: '本当に削除していいですか' } %></td>
         </tr>

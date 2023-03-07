@@ -1,4 +1,10 @@
 ja:
+  enums:
+    task:
+      priorities:
+          row:  低
+          middle: 中
+          high: 高
   activerecord:
     models:
       task: タスク
@@ -9,6 +15,7 @@ ja:
         content: 内容
         deadline: 期限
         status: ステータス
+        priority: 優先度
       user:
         title: タイトル
         name: 名前
