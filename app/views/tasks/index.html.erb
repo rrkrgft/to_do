@@ -18,6 +18,7 @@
         <th>ステータス</th>
         <th>更新日時</th>
         <th><%= link_to "優先度", tasks_path(sort_priority: "true") %></th>
+        <th>作成者</th>
       </tr>
     </thead>
     <tbody>
@@ -28,6 +29,7 @@
           <td><%= t.status %></td>
           <td><%= t.created_at %></td>
           <td><%= t.priority %></td>
+          <td><%= t.user.name %></td>
           <td><%= link_to "編集", edit_task_path(t.id), class: "btn btn-outline-secondary" %></td>
           <td><%= link_to "削除", task_path(t.id), method: :delete, class: "btn btn-danger", data: { confirm: '本当に削除していいですか' } %></td>
         </tr>

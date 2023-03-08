@@ -17,4 +17,6 @@ class Task < ApplicationRecord
       @task = Task.where("title LIKE?","%#{search}%").where(status: "#{select}")
     end
   }
+
+  belongs_to :user
 end
