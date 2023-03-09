@@ -11,7 +11,7 @@
   </div>
 <% end %>
 
-<%= form_with(model: @user, local:true) do |u| %>
+<%= form_with(model: @user, local:true, url: admin_users_path) do |u| %>
   <div class="form-group my-2">
     <%= u.label :name %>
     <%= u.text_field :name, class: "form-control" %>
