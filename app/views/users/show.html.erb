@@ -20,3 +20,31 @@
     </tr>
   </tbody>
 </table>
+<div class="mb-3">
+  <table class="table table-hover">
+    <thead class="tehad-default">
+      <tr>
+        <th>タイトル</th>
+        <th><%= link_to "期限", tasks_path(sort_expired: "true") %></th>
+        <th>ステータス</th>
+        <th>更新日時</th>
+        <th><%= link_to "優先度", tasks_path(sort_priority: "true") %></th>
+        <th>作成者</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @user.tasks.each do |t| %>
+        <tr>
+          <td><%= link_to t.title, task_path(t.id),class: "task_row" %></td>
+          <td><%= t.deadline %></td>
+          <td><%= t.status %></td>
+          <td><%= t.created_at %></td>
+          <td><%= t.priority %></td>
+          <td><%= t.user.name %></td>
+          <td><%= link_to "編集", edit_task_path(t.id), class: "btn btn-outline-secondary" %></td>
+          <td><%= link_to "削除", task_path(t.id), method: :delete, class: "btn btn-danger", data: { confirm: '本当に削除していいですか' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
