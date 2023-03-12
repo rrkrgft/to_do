@@ -19,4 +19,6 @@ class Task < ApplicationRecord
   }
 
   belongs_to :user
+  has_many :sorts, dependent: :destroy
+  has_many :labels, through: :sorts, dependent: :destroy 
 end
