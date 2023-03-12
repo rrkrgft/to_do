@@ -6,14 +6,14 @@ class LabelsController < ApplicationController
   def create
     @label = Label.new(label_params)
     if @label.save
-      redirect_to 
+      redirect_to labels_path, notice: "ラベルを登録しました"
     else
       render :new, notice: "登録エラーです"
     end
   end
 
   def index
-    @label = Lavel.all
+    @labels = Label.all
   end
 
   def edit
@@ -23,7 +23,7 @@ class LabelsController < ApplicationController
   def update
     set_label
     if @label.update
-      redirect_to 
+      redirect_to labels_path, notice: "ラベルを編集しました"
     else
       render :edit, notice: "編集エラーです"
     end
@@ -32,7 +32,7 @@ class LabelsController < ApplicationController
   def destroy
     set_label
     @label.destroy
-    redirect_to 
+    redirect_to labels_path, notice: "ラベルを削除しました"
   end
 
   private

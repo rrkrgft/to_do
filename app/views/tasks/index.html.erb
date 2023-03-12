@@ -6,6 +6,7 @@
     <%= t.text_field :search, class: "col-sm-3 mr-3" %>
     <%= t.label "　　　ステータス", class: "col-sm-2 pl-3" %>
     <%= t.select :select,options_for_select(["","未着手","着手中","完了"]), {}, class: "dropdown col-sm-2 " %>
+    <%= t.select :select2, options_for_select(Label.all.pluck(:labelname).unshift('')),{}%>
     <%= t.submit "検索", class: "btn btn-outline-primary ml-2" %>
   <% end %>
 </div>
@@ -19,6 +20,7 @@
         <th>更新日時</th>
         <th><%= link_to "優先度", tasks_path(sort_priority: "true") %></th>
         <th>作成者</th>
+        <th>ラベル</th>
       </tr>
     </thead>
     <tbody>
@@ -30,6 +32,7 @@
           <td><%= t.created_at %></td>
           <td><%= t.priority %></td>
           <td><%= t.user.name %></td>
+          <td><%= t.labels.pluck(:labelname).join("、") %></td>
           <td><%= link_to "編集", edit_task_path(t.id), class: "btn btn-outline-secondary" %></td>
           <td><%= link_to "削除", task_path(t.id), method: :delete, class: "btn btn-danger", data: { confirm: '本当に削除していいですか' } %></td>
         </tr>

@@ -8,13 +8,29 @@ class Task < ApplicationRecord
     order([])
   }
 
-  scope :looks, -> (search,select){
-    if select == ""
-      @task = Task.where("title LIKE?" ,"%#{search}%")
-    elsif search == ""
-      @task = Task.where(status: "#{select}")
+  scope :looks, -> (search){
+    if search == ""
+      return
     else
-      @task = Task.where("title LIKE?","%#{search}%").where(status: "#{select}")
+      where("title LIKE?", "%#{search}%")
+    end
+  }
+
+  scope :looks2, -> (select){
+    if select == ""
+      return
+    else
+      where(status: "#{select}")
+    end
+  }
+
+  scope :looks3, -> (select2){
+    @looks3 = Label.where(labelname: select2).pluck(:id)
+    @looks3 = Sort.where( label_id: @looks3).pluck(:task_id)
+    if select2 == ''
+      return
+    else
+      where( id: @looks3)
     end
   }
 
