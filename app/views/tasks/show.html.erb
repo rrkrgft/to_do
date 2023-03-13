@@ -34,6 +34,10 @@
       <th>更新日時</th>
       <td><%= @task.updated_at %></td>
     </tr>
+    <tr>
+      <th>ラベル</th>
+      <td><%= @task.labels.pluck(:labelname).join("、") %></td>
+    </tr>
   </tbody>
 </table>
 <%= link_to "一覧", tasks_path, class: "btn btn-outline-primary" %>
