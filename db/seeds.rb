@@ -7,7 +7,7 @@ names = %w(sato suzuki tanaka takahashi ito watanabe yamamoto nakamura kobayashi
     password: 'password',
     admin: true
   )
-ends
+end
 
 0.upto(9) do |idx|
   Task.create(
