@@ -13,17 +13,18 @@ class TasksController < ApplicationController
   end
 
   def index
-    if (params[:search] == "" || params[:search] == nil) && (params[:select] == "" || params[:select] == nil )
+    if (params[:search] == "" || params[:search] == nil) && (params[:select] == "" || params[:select] == nil ) && (params[:select2] == "" || params[:select2] == nil)
       if params[:sort_expired]
-        @tasks = Task.where(user_id: current_user.id).order("deadline DESC").page(params[:page]).per(3)
+        @tasks = Task.where(user_id: current_user.id).order("deadline DESC")
       elsif params[:sort_priority]
-        @tasks = Task.where(user_id: current_user.id).order("priority DESC").page(params[:page]).per(3)
+        @tasks = Task.where(user_id: current_user.id).order("priority DESC")
       else
-        @tasks = Task.where(user_id: current_user.id).order("created_at DESC").page(params[:page]).per(3)
+        @tasks = Task.where(user_id: current_user.id).order("created_at DESC")
       end
     else
-      @tasks = Task.looks(params[:search], params[:select]).where(user_id: current_user.id).page(params[:page]).per(3)
+      @tasks = Task.looks(params[:search]).looks2(params[:select]).looks3(params[:select2]).where(user_id: current_user.id)
     end
+    @tasks = @tasks.page(params[:page]).per(5)
   end
 
   def show
@@ -55,7 +56,7 @@ class TasksController < ApplicationController
 
   private
   def task_params
-    params.require(:task).permit(:title, :content, :deadline, :status, :priority)
+    params.require(:task).permit(:title, :content, :deadline, :status, :priority, label_ids: [] )
   end
 
   def set_task

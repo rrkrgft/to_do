@@ -10,25 +10,31 @@
     </div>
   <% end %>
   
-  <div class="form-group">
+  <div class="form-group my-3">
     <%= t.label :title %>
     <%= t.text_field :title, class:"form-control" %>
   </div>
-  <div class="form-group">
+  <div class="form-group my-3">
     <%= t.label :content %>
     <%= t.text_field :content, class:"form-control" %>
   </div>
-  <div class="form-group">
+  <div class="form-group my-3">
     <%= t.label :deadline %>
     <%= t.date_field :deadline, class:"form-control" %>
   </div>
-  <div class="form-group">
+  <div class="form-group my-3">
     <%= t.label :status %>
     <%= t.select :status ,["未着手","着手中","完了"] , {} , class:"form-control" %>
   </div>
-  <div class="form-group">
+  <div class="form-group my-3">
     <%= t.label :priority %>
     <%= t.select :priority ,Task.priorities.keys, {}, class:"form-control" %>
+  </div>
+  <div class="form-group my-3">
+    <% Label.all.each do |lab| %>
+      <%= t.check_box :label_ids, { multiple: true }, lab[:id], nil %>
+      <%= t.label :label_ids, lab.labelname, value: lab[:id] %>
+    <% end %>
   </div>
   <%= t.submit "登録", class: "btn btn-primary mt-3" %>
 <% end %>

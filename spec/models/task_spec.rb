@@ -30,25 +30,25 @@ RSpec.describe 'タスクモデル機能', type: :model do
     context 'scopeメソッドでタイトルのあいまい検索をした場合' do
       it "検索キーワードを含むタスクが絞り込まれる" do
         # title_seachはscopeで提示したタイトル検索用メソッドである。メソッド名は任意で構わない。
-        expect(Task.looks('task','')).to include(task)
-        expect(Task.looks('task','')).not_to include('sample')
-        expect(Task.looks('task','').count).to eq 2
+        expect(Task.looks('task')).to include(task)
+        expect(Task.looks('task')).not_to include('sample')
+        expect(Task.looks('task').count).to eq 2
       end
     end
     context 'scopeメソッドでステータス検索をした場合' do
       it "ステータスに完全一致するタスクが絞り込まれる" do
         # ここに内容を記載する
-        expect(Task.looks('','未着手')).to include(task)
-        expect(Task.looks('','未着手')).not_to include(second_task)
-        expect(Task.looks('','未着手').count).to eq 1
+        expect(Task.looks2('未着手')).to include(task)
+        expect(Task.looks2('未着手')).not_to include(second_task)
+        expect(Task.looks2('未着手').count).to eq 1
       end
     end
     context 'scopeメソッドでタイトルのあいまい検索とステータス検索をした場合' do
       it "検索キーワードをタイトルに含み、かつステータスに完全一致するタスク絞り込まれる" do
         # ここに内容を記載する
-        expect(Task.looks('task','未着手')).to include(task)
-        expect(Task.looks('task','未着手')).not_to include(task3)
-        expect(Task.looks('task','未着手').count).to eq 1
+        expect(Task.looks('task').looks2('未着手')).to include(task)
+        expect(Task.looks('task').looks2('未着手')).not_to include(task3)
+        expect(Task.looks('task').looks2('未着手').count).to eq 1
       end
     end
   end

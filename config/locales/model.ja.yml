@@ -28,3 +28,5 @@ ja:
       session:
         email: メールアドレス
         password: パスワード
+      label:
+        labelname: ラベル
