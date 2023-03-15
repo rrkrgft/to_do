@@ -13,17 +13,18 @@ class TasksController < ApplicationController
   end
 
   def index
-    if (params[:search] == "" || params[:search] == nil) && (params[:select] == "" || params[:select] == nil ) && (params[:select2] == "" || params[:select2] == nil)
-      if params[:sort_expired]
-        @tasks = Task.where(user_id: current_user.id).order("deadline DESC")
-      elsif params[:sort_priority]
-        @tasks = Task.where(user_id: current_user.id).order("priority DESC")
-      else
-        @tasks = Task.where(user_id: current_user.id).order("created_at DESC")
-      end
+    @tasks = Task.search_by_title(params[:search]).search_by_status(params[:select]).search_by_labels(params[:select2]).where(user_id: current_user.id)
+    #if (params[:search] == "" || params[:search] == nil) && (params[:select] == "" || params[:select] == nil ) && (params[:select2] == "" || params[:select2] == nil)
+    if params[:sort_expired]
+      @tasks = @tasks.order("deadline DESC")
+    elsif params[:sort_priority]
+      @tasks = @tasks.order("priority DESC")
     else
-      @tasks = Task.looks(params[:search]).looks2(params[:select]).looks3(params[:select2]).where(user_id: current_user.id)
+      @tasks = @tasks.order("created_at DESC")
     end
+    #else
+      #@tasks = Task.looks(params[:search]).looks2(params[:select]).looks3(params[:select2]).where(user_id: current_user.id)
+    #end
     @tasks = @tasks.page(params[:page]).per(5)
   end
 

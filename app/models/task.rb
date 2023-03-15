@@ -8,30 +8,17 @@ class Task < ApplicationRecord
     order([])
   }
 
-  scope :looks, -> (search){
-    if search == ""
-      return
-    else
-      where("title LIKE?", "%#{search}%")
-    end
+  scope :search_by_title, -> (search){
+    where("title LIKE?", "%#{search}%") if search.present?
   }
 
-  scope :looks2, -> (select){
-    if select == ""
-      return
-    else
-      where(status: "#{select}")
-    end
+  scope :search_by_status, -> (select){
+    where(status: "#{select}") if select.present?
   }
 
-  scope :looks3, -> (select2){
-    @looks3 = Label.where(labelname: select2).pluck(:id)
-    @looks3 = Sort.where( label_id: @looks3).pluck(:task_id)
-    if select2 == ''
-      return
-    else
-      where( id: @looks3)
-    end
+  scope :search_by_labels, -> (select2){
+    @looks3 = Sort.where( label_id: select2).pluck(:task_id)
+    where( id: @looks3) if select2.present?
   }
 
   belongs_to :user

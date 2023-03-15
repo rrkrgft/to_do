@@ -7,7 +7,7 @@ names = %w(sato suzuki tanaka takahashi ito watanabe yamamoto nakamura kobayashi
     password: 'password',
     admin: true
   )
-ends
+end
 
 0.upto(9) do |idx|
   Task.create(
@@ -22,6 +22,6 @@ end
 
 0.upto(9) do |idx|
   Label.create(
-    labelname: test#{idx + 1}
+    labelname: "test#{idx + 1}"
   )
 end 
