@@ -3,11 +3,12 @@
 <div class="my-3">
   <%= form_with(url: tasks_path, local: true, method: :get ) do |t| %>
     <%= t.label "タスク名", class: "col-sm-1 pl-3" %>
-    <%= t.text_field :search, class: "col-sm-3 mr-3" %>
+    <%= t.text_field :search_title, class: "col-sm-3 mr-3" %>
     <%= t.label "　ステータス", class: "col-sm-2" %>
     <%= t.select :select,options_for_select(["","未着手","着手中","完了"]), {}, class: "dropdown col-sm-2" %>
     <%= t.label "　ラベル", class: "col-sm-1" %>
-    <%= t.select :select2, options_for_select(Label.all.pluck(:labelname).unshift('')),{}, class: "col-sm-1"%>
+    <%#= t.select :select2, options_for_select(Label.all.pluck(:labelname).unshift('')),{}, class: "col-sm-1"%>
+    <%= t.select :select2, options_for_select(Label.all.pluck(:labelname, :id)), include_blank: true, class: "col-sm-1" %>
     <%= t.submit "検索", class: "btn btn-outline-primary ml-2" %>
   <% end %>
 </div>
