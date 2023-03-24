@@ -13,7 +13,7 @@ class TasksController < ApplicationController
   end
 
   def index
-    @tasks = Task.search_by_title(params[:search]).search_by_status(params[:select]).search_by_labels(params[:select2]).where(user_id: current_user.id)
+    @tasks = current_user.tasks.search_by_title(params[:search]).search_by_status(params[:select]).search_by_labels(params[:select2])
     #if (params[:search] == "" || params[:search] == nil) && (params[:select] == "" || params[:select] == nil ) && (params[:select2] == "" || params[:select2] == nil)
     if params[:sort_expired]
       @tasks = @tasks.order("deadline DESC")

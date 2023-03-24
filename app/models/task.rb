@@ -17,8 +17,8 @@ class Task < ApplicationRecord
   }
 
   scope :search_by_labels, -> (select2){
-    @looks3 = Sort.where( label_id: select2).pluck(:task_id)
-    where( id: @looks3) if select2.present?
+    task_id = Sort.where( label_id: select2).pluck(:task_id)
+    where( id: task_id) if select2.present?
   }
 
   belongs_to :user

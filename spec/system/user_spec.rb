@@ -25,6 +25,7 @@ RSpec.describe 'ユーザー機能', type: :system do
     before do
       visit new_session_path
       fill_in 'Email', with: 'a@example.com'
+      fill_in 'Email', with: user1.email
       fill_in 'Password', with: 'password'
       click_on 'ログイン'
     end

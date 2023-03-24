@@ -1,5 +1,7 @@
 require 'rails_helper'
 RSpec.describe 'ラベル機能', type: :system do
+  include SignInModule
+  
   let!(:user){ FactoryBot.create(:user)}
   before do
     visit new_session_path
